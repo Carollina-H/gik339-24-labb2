@@ -9,3 +9,6 @@ fetch(url)
   .then((jsonData) => console.log(jsonData));
 
 // Uppgift 7
+
+const newElement = document.createElement("ul");
+newElement.classList.add("new-element");
