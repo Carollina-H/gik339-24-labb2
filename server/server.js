@@ -20,6 +20,7 @@ server
 //   res.send(`Du gjorde en ${method}-förfrågan till url:en ${url}.`);
 // });
 
+//servern
 server.listen(3000, () => {
   console.log("Server running on http://localhost:3000.");
 });
@@ -42,5 +43,4 @@ server.get("/users", (req, res) => {
 });
 
 // Uppgift 4
-
 // Uppgift 5
