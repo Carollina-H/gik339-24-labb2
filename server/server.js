@@ -41,6 +41,3 @@ server.get("/users", (req, res) => {
   db.close();
 });
 
-// Uppgift 4
-
-// Uppgift 5
