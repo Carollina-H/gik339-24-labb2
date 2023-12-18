@@ -40,3 +40,4 @@ server.get("/users", (req, res) => {
   });
   db.close();
 });
+
