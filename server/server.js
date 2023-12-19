@@ -44,3 +44,37 @@ server.get("/users", (req, res) => {
 
 // Uppgift 4
 // Uppgift 5
+//new code for server.js
+
+server.post("/users", (req, res) => {
+  const user = req.body;
+  const sql = `INSERT INTO users(firstName, lastName, username, color) VALUES (?,?,?,?)`;
+  db.run(sql, Object.values(user), (err) => {
+    if (err) {
+      console.log(err);
+      res.status(500).send(err);
+    } else {
+      res.send("Användaren sparades");
+    }
+  });
+});
+
+//remember to go into the server terminal and run the code "cd server" as well as "npm start" i order to start up nodemon and the server!
+
+server.put("/users", (req, res) => {
+  const bodyData = req.body;
+
+  const id = bodyData.id;
+  const user = {
+    firstName: bodyData.firstName,
+    lastName: bodyData.lastName,
+    username: bodyData.username,
+    color: bodyData.color,
+  };
+
+  res.send(user);
+  //Create and SEND data in POSTMAN in PUT/x-www-form-urlencoded
+  //(KEY: id, firstName, lastName, username, color) (VALUE: 1, Nova, Söderlund Granzer, lillianlovefall, purple)
+
+  //UPDATE users SET firstName="Nova",lastName="Söderlund Granzer" WHERE id=1
+});
