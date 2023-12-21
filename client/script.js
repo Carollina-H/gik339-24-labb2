@@ -1,79 +1,24 @@
 // Uppgift 6
-/*
-const url = "http://localhost:3000/users";
-fetch(url)
-  .then((response) => {
-    console.log(response);
-    return response.json();
-  })
-  .then((jsonData) => console.log(jsonData));
-
-// Uppgift 7
-
-const newElement = document.createElement("ul");
-newElement.classList.add("new-element");
-*/
-//new code for script.js
-
-const url = "http://localhost:3000/users";
-
-window.addEventListener("load", fetchData);
-
-function fetchData() {
-  fetch(url)
-    .then((result) => result.JSON())
-    .then((users) => {
-      if (users.length > 0) {
-        let html = `<ul class="w-3/4 my-3 mx-auto flex flex-wrap gap-2 justify-center>`;
-        users.forEach((user) => {
-          html += `<li class="bg-${user.color}-200 basis-1/4 text-${user.color}-900 p-2 rounded-md border-2 border-${user.color}-400 flex flex-col justify-between">
-							<h3>${user.firstName} ${user.lastName}</h3>
-							<p>Användarnamn: ${user.username}</p>
-							<div>
-								<button 
-                class="border border-${user.color}-300 hover:bg-white/100 rounded-md bg-white/50 p-1 text-sm mt-2">
-									Ändra
-								</button>
-								<button class="border border-${user.color}-300 hover:bg-white/100 rounded-md bg-white/50 p-1 text-sm mt-2">
-									Ta bort
-								</button>
-							</div>
-							</li>`;
-        });
-        html += `</ul>`;
-
-        const listContainer = document.getElementById("listContainer");
-        listContainer.innerHTML = "";
-        listContainer.insertAdjacentHTML("beforeend", html);
-      }
-    });
+async function getPromise() {
+  const res = await fetch("http://localhost:3000/users");
+  console.log(res.json);
+  return res.json();
 }
 
-userForm.addEventListener("submit", handleSubmit);
+async function getData() {
+  const users = await getPromise();
+  const listContainer = document.getElementById("listContainer");
 
-function handleSubmit(e) {
-  e.preventDefault();
-  const serverUserObject = {
-    firstName: "",
-    lastName: "",
-    username: "",
-    color: "",
-  };
-  //can be looped instead of done individually
-  serverUserObject.firstName = userForm.firstName.value;
-  serverUserObject.lastName = userForm.lastName.value;
-  serverUserObject.username = userForm.username.value;
-  serverUserObject.color = userForm.color.value;
+  users.forEach((user) => {
+    let element = `<div class="bg-${user.color}-200 text-${user.color}-900 p-2 rounded-md border-2 border-${user.color}-400 flex flex-col justify-between"> 
+    <p class="box">ID number: ${user.id}</p>
+    <p class="box">Name: ${user.firstName} ${user.lastName}</p>
+    <p class="box">Username: ${user.username}</p>
+    <p class="box">Favorite color: ${user.color}</p>
+    </div>`;
 
-  const request = new Request(url, {
-    method: "POST",
-    headers: {
-      "content-type": "application/JSON",
-    },
-    body: JSON.stringify(serverUserObject),
-  });
-
-  fetch(request).then((response) => {
-    userForm.reset();
+    listContainer.insertAdjacentHTML("beforeend", element);
   });
 }
+
+getData();
