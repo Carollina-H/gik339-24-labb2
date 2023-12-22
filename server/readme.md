@@ -1,1 +1,3 @@
-Hullo >:3
+GIK339
+Labb 2
+Grupp 24

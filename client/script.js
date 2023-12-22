@@ -10,11 +10,11 @@ async function getData() {
   const listContainer = document.getElementById("listContainer");
 
   users.forEach((user) => {
-    let element = `<div class="bg-${user.color}-200 text-${user.color}-900 p-2 rounded-md border-2 border-${user.color}-400 flex flex-col justify-between"> 
-    <p class="box">ID number: ${user.id}</p>
-    <p class="box">Name: ${user.firstName} ${user.lastName}</p>
-    <p class="box">Username: ${user.username}</p>
-    <p class="box">Favorite color: ${user.color}</p>
+    let element = `<div class="bg-${user.color}-200 text-${user.color}-900 p-2 rounded-md border-2 border-${user.color}-400 flex flex-col w-[15rem] h-[fit-content] justify-between"> 
+    <p>ID: ${user.id}</p>
+    <p>Name: ${user.firstName} ${user.lastName}</p>
+    <p>Username: ${user.username}</p>
+    <p>Favorite color: ${user.color}</p>
     </div>`;
 
     listContainer.insertAdjacentHTML("beforeend", element);
