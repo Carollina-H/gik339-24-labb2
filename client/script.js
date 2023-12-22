@@ -1,10 +1,12 @@
 // Uppgift 6
 async function getPromise() {
   const res = await fetch("http://localhost:3000/users");
-  console.log(res.json);
-  return res.json();
+  const data = await res.json();
+  console.log(data);
+  return data;
 }
 
+// Uppgift 7
 async function getData() {
   const users = await getPromise();
   const listContainer = document.getElementById("listContainer");
